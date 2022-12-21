@@ -1,7 +1,5 @@
 import './App.css';
 
-let isMenuOpen = false;
-
 function Logo() {
   return <img src='images/logo.svg' alt='logo' className='logo' />
 };
@@ -23,8 +21,6 @@ function MobileMenuButton() {
     <button className='mobile-menu-button' onClick={() => {
         document.querySelector('.internal-components').classList.add('in-the-background');
         document.querySelector('.mobile-menu').classList.add('open');
-
-        setTimeout(() => {isMenuOpen = true}, 5);
     }}>
       <img src='images/icon-menu.svg' alt='Menu Button' />
     </button>
@@ -105,7 +101,7 @@ function LineDivisor() {
 function New(props) {
   return (
     <section className='new'>
-      <h1 className='new-title'>New</h1>
+      <h2 className='new-title'>New</h2>
 
       <div className='new-news-group'>
         <NewNews
@@ -140,7 +136,7 @@ function PopularNews(props) {
       <div className='popular-news-informations'>
         <h2 className='popular-news-position'>{props.position}</h2>
 
-        <h4 className='popular-news-title'>{props.title}</h4>
+        <h3 className='popular-news-title'>{props.title}</h3>
 
         <p className='popular-news-subtitle'>{props.subtitle}</p>
       </div>
@@ -151,7 +147,7 @@ function PopularNews(props) {
 
 function PopularNewsGroup(props) {
   return (
-    <section className='popular-news-group'>
+    <div className='popular-news-group'>
       <PopularNews
       photoSrc={props.first.photoSrc}
       photoAlt={props.first.photoAlt}
@@ -175,7 +171,7 @@ function PopularNewsGroup(props) {
       title={props.third.title}
       subtitle={props.third.subtitle}
       />
-    </section>
+    </div>
   );
 };
 
@@ -184,8 +180,6 @@ function CloseMenuButton() {
     <button className='mobile-menu-close-button' onClick={() => {
       document.querySelector('.internal-components').classList.remove('in-the-background');
       document.querySelector('.mobile-menu').classList.remove('open');
-
-      isMenuOpen = false;
     }}>
       <img src="images/icon-menu-close.svg" alt="Menu close button" />
     </button>
@@ -193,24 +187,17 @@ function CloseMenuButton() {
 };
 
 function MobileNavigationSpace() {
-  function closeMenu() {
-    document.querySelector('.internal-components').classList.remove('in-the-background');
-    document.querySelector('.mobile-menu').classList.remove('open');
-
-    isMenuOpen = false;
-  };
-
   return (
     <nav className='mobile-navigation-space'>
-      <a onClick={closeMenu}>Home</a>
+      <a>Home</a>
 
-      <a onClick={closeMenu}>New</a>
+      <a>New</a>
 
-      <a onClick={closeMenu}>Popular</a>
+      <a>Popular</a>
 
-      <a onClick={closeMenu}>Trending</a>
+      <a>Trending</a>
 
-      <a onClick={closeMenu}>Categories</a>
+      <a>Categories</a>
     </nav>
   );
 };
@@ -228,14 +215,7 @@ function MobileMenu() {
 function App() {
   return (
     <>
-      <div className='internal-components' onClick={() => {
-        if (isMenuOpen) {
-          document.querySelector('.internal-components').classList.remove('in-the-background');
-          document.querySelector('.mobile-menu').classList.remove('open');
-
-          isMenuOpen = false;
-        };
-      }}>
+      <div className='internal-components'>
         <Header />
 
         <News
